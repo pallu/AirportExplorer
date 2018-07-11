@@ -2,11 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>9f9ba703-c6f9-4b0d-992b-57e665fdcd81</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="7.1.1" />
     <PackageReference Include="GeoJSON.net" Version="1.1.64" />
+    <PackageReference Include="GoogleApi" Version="3.5.0" />
+    <PackageReference Include="MaxMind.GeoIP2" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 

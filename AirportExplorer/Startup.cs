@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,6 +40,16 @@ namespace AirportExplorer
         {
             if (env.IsDevelopment())
             {
+                //in development mode, IP Address is 127.0.0.1 or ::1 which does not work for geolocation
+                //so add Forwarded address
+                app.UseForwardedHeaders(new ForwardedHeadersOptions
+                {
+                    ForwardedHeaders = ForwardedHeaders.XForwardedFor,
+
+                    // IIS is also tagging an X-Forwarded-For header on, so we need to increase this limit, 
+                    // otherwise the X-Forwarded-For we are passing along from the browser will be ignored
+                    ForwardLimit = 2
+                });
                 app.UseDeveloperExceptionPage();
             }
             else
